@@ -5,48 +5,48 @@ import (
   "testing"
 )
 
-func TestLivingCondition(t *testing.T) {
-  m := map[int]CellState{
-    0: UnderPopulation,
-    1: UnderPopulation,
-    2: Living,
-    3: Living,
-    4: OverPopulation,
-    5: OverPopulation,
-    6: OverPopulation,
-    7: OverPopulation,
-    8: OverPopulation,
+func TestCellAlive(t *testing.T) {
+  livingCell := Cell{Alive: true}
+  assert.Equal(t, true, IsAlive(livingCell))
+
+  deadCell := Cell{Alive: false}
+  assert.Equal(t, false, IsAlive(deadCell))
+}
+
+func TestDeadCellNextState(t *testing.T) {
+  cell := Cell{Alive: false}
+  m := map[int]Cell{
+    0: {Alive: false},
+    1: {Alive: false},
+    2: {Alive: false},
+    3: {Alive: true},
+    4: {Alive: false},
+    5: {Alive: false},
+    6: {Alive: false},
+    7: {Alive: false},
+    8: {Alive: false},
   }
 
-  for k, v := range m {
-    c := Cell{
-      NumberOfNeighbours: k,
-      Position:           "somewhere",
-      Alive:              true,
-    }
-    assert.Equal(t, v, LivingCondition(c))
+  for neighbours, expected := range m {
+    assert.Equal(t, expected, NextState(cell, neighbours))
   }
 }
 
-func TestDeadCondition(t *testing.T) {
-  m := map[int]CellState{
-    0: Dead,
-    1: Dead,
-    2: Dead,
-    3: Reproduction,
-    4: Dead,
-    5: Dead,
-    6: Dead,
-    7: Dead,
-    8: Dead,
+func TestLivingCellNextState(t *testing.T) {
+  cell := Cell{Alive: true}
+  m := map[int]Cell{
+    0: {Alive: false},
+    1: {Alive: false},
+    2: {Alive: true},
+    3: {Alive: true},
+    4: {Alive: false},
+    5: {Alive: false},
+    6: {Alive: false},
+    7: {Alive: false},
+    8: {Alive: false},
   }
 
-  for k, v := range m {
-    c := Cell{
-      NumberOfNeighbours: k,
-      Position:           "somewhere",
-      Alive:              false,
-    }
-    assert.Equal(t, v, DeadCondition(c))
+  for neighbours, expected := range m {
+    assert.Equal(t, expected, NextState(cell, neighbours))
   }
 }
