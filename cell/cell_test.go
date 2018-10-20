@@ -1,4 +1,4 @@
-package cells
+package cell
 
 import (
   "github.com/stretchr/testify/assert"

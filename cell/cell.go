@@ -1,4 +1,4 @@
-package cells
+package cell
 
 type Cell struct {
   Position string // placeholder
