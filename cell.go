@@ -1,8 +1,8 @@
 package main
 
 type Cell struct {
-  Position string // placeholder
-  Alive    bool
+  x, y  int // position of a cell
+  Alive bool
 }
 
 func IsAlive(c Cell) bool {
@@ -12,15 +12,15 @@ func IsAlive(c Cell) bool {
 func NextState(c Cell, neighbours int) Cell {
   if IsAlive(c) {
     if neighbours == 2 || neighbours == 3 {
-      return Cell{Position: c.Position, Alive: true}
+      return Cell{x: c.x, y: c.y, Alive: true}
     } else {
-      return Cell{Position: c.Position, Alive: false}
+      return Cell{x: c.x, y: c.y, Alive: false}
     }
   } else {
     if neighbours == 3 {
-      return Cell{Position: c.Position, Alive: true}
+      return Cell{x: c.x, y: c.y, Alive: true}
     } else {
-      return Cell{Position: c.Position, Alive: false}
+      return Cell{x: c.x, y: c.y, Alive: false}
     }
   }
 }
