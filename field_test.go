@@ -11,12 +11,38 @@ func TestFieldSize(t *testing.T) {
 }
 
 func TestCellNeighbours(t *testing.T) {
+  cell_00 := Cell{x: 0, y: 0}
+  cell_01 := Cell{x: 0, y: 1}
+  cell_02 := Cell{x: 0, y: 2}
+  cell_10 := Cell{x: 1, y: 0}
+  cell_20 := Cell{x: 2, y: 0}
+  cell_11 := Cell{x: 1, y: 1}
+  cell_12 := Cell{x: 1, y: 2}
+  cell_21 := Cell{x: 2, y: 1}
+  cell_22 := Cell{x: 2, y: 2}
   cells := []Cell{
-    Cell{Alive: false, x: 0, y: 0},
-    Cell{Alive: false, x: 0, y: 1},
-    Cell{Alive: false, x: 1, y: 0},
-    Cell{Alive: false, x: 1, y: 1},
+    cell_00,
+    cell_01,
+    cell_02,
+    cell_10,
+    cell_20,
+    cell_11,
+    cell_12,
+    cell_21,
+    cell_22,
   }
-  field := Field{width: 2, height: 2, cells: cells}
-  assert.Equal(t, 6, NeighboursCount(field, cells[0]))
+  field := Field{width: 3, height: 3, cells: cells}
+
+  testTable := []struct {
+    in  Cell
+    out []Cell
+  }{
+    {cell_00, []Cell{cell_01, cell_11, cell_10}},
+    {cell_11, []Cell{cell_00, cell_01, cell_02, cell_10, cell_12, cell_20, cell_21, cell_22}},
+    {cell_22, []Cell{cell_12, cell_11, cell_21}},
+  }
+
+  for _, tt := range testTable {
+    assert.Equal(t, len(tt.out), len(Neighbours(field, tt.in.x, tt.in.y)))
+  }
 }
