@@ -36,3 +36,13 @@ func Neighbours(field Field, x int, y int) []Cell {
   }
   return neigbours
 }
+
+func FindCell(field Field, x int, y int) Cell {
+  for i := range field.cells {
+    if field.cells[i].x == x && field.cells[i].y == y {
+      return field.cells[i]
+    }
+  }
+  // SHOULD NOT HAPPEN
+  return field.cells[0]
+}
