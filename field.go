@@ -10,7 +10,7 @@ func FieldSize(field Field) int {
 }
 
 func NeighboursCount(field Field, cell Cell) int {
-  return 8
+  return len(Neighbours(field, cell.x, cell.y))
 }
 
 func Neighbours(field Field, x int, y int) []Cell {
