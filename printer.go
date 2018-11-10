@@ -7,7 +7,7 @@ func Output(field Field) string {
 
   for h := 0; h < field.height; h++ {
     for w := 0; w < field.width; w++ {
-      b.WriteString(FmtCell(FindCell(field, w, h)))
+      b.WriteString(FmtCell(GetCell(field, w, h)))
 
     }
     b.WriteString("\n")

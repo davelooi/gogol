@@ -15,16 +15,10 @@ func TestAllAlive(t *testing.T) {
   cell_12 := Cell{x: 1, y: 2, Alive: true}
   cell_21 := Cell{x: 2, y: 1, Alive: true}
   cell_22 := Cell{x: 2, y: 2, Alive: true}
-  cells := []Cell{
-    cell_00,
-    cell_01,
-    cell_02,
-    cell_10,
-    cell_20,
-    cell_11,
-    cell_12,
-    cell_21,
-    cell_22,
+  cells := [][]Cell{
+    {cell_00, cell_01, cell_02},
+    {cell_10, cell_11, cell_12},
+    {cell_20, cell_21, cell_22},
   }
   field := Field{width: 3, height: 3, cells: cells}
   out := "xxx\nxxx\nxxx\n"
@@ -42,16 +36,10 @@ func TestAllDead(t *testing.T) {
   cell_12 := Cell{x: 1, y: 2, Alive: false}
   cell_21 := Cell{x: 2, y: 1, Alive: false}
   cell_22 := Cell{x: 2, y: 2, Alive: false}
-  cells := []Cell{
-    cell_00,
-    cell_01,
-    cell_02,
-    cell_10,
-    cell_20,
-    cell_11,
-    cell_12,
-    cell_21,
-    cell_22,
+  cells := [][]Cell{
+    {cell_00, cell_01, cell_02},
+    {cell_10, cell_11, cell_12},
+    {cell_20, cell_21, cell_22},
   }
   field := Field{width: 3, height: 3, cells: cells}
   out := "   \n   \n   \n"
@@ -69,16 +57,10 @@ func TestHalfAlive(t *testing.T) {
   cell_20 := Cell{x: 2, y: 0, Alive: true}
   cell_21 := Cell{x: 2, y: 1, Alive: true}
   cell_22 := Cell{x: 2, y: 2, Alive: false}
-  cells := []Cell{
-    cell_00,
-    cell_01,
-    cell_02,
-    cell_10,
-    cell_20,
-    cell_11,
-    cell_12,
-    cell_21,
-    cell_22,
+  cells := [][]Cell{
+    {cell_00, cell_01, cell_02},
+    {cell_10, cell_11, cell_12},
+    {cell_20, cell_21, cell_22},
   }
   field := Field{width: 3, height: 3, cells: cells}
   out := "x x\n  x\nxx \n"
