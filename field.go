@@ -2,49 +2,32 @@ package main
 
 type Field struct {
   width, height int
-  cells         []Cell
+  cells         [][]Cell
 }
 
 func FieldSize(field Field) int {
   return field.width * field.height
 }
 
-func NeighboursCount(field Field, cell Cell) int {
-  return len(Neighbours(field, cell))
-}
-
 func Neighbours(field Field, cell Cell) []Cell {
   var neigbours []Cell
-  x := cell.x
-  y := cell.y
-  for _, cell := range field.cells {
-    if cell.x == x+1 && cell.y == y {
-      neigbours = append(neigbours, cell)
-    } else if cell.x == x+1 && cell.y == y+1 {
-      neigbours = append(neigbours, cell)
-    } else if cell.x == x+1 && cell.y == y-1 {
-      neigbours = append(neigbours, cell)
-    } else if cell.x == x && cell.y == y+1 {
-      neigbours = append(neigbours, cell)
-    } else if cell.x == x && cell.y == y-1 {
-      neigbours = append(neigbours, cell)
-    } else if cell.x == x-1 && cell.y == y {
-      neigbours = append(neigbours, cell)
-    } else if cell.x == x-1 && cell.y == y+1 {
-      neigbours = append(neigbours, cell)
-    } else if cell.x == x-1 && cell.y == y-1 {
-      neigbours = append(neigbours, cell)
+
+  for x := cell.x - 1; x <= cell.x+1; x++ {
+    if x >= 0 && x < field.width {
+      for y := cell.y - 1; y <= cell.y+1; y++ {
+        if y >= 0 && y < field.height {
+          if x == cell.x && y == cell.y {
+            continue
+          }
+          neigbours = append(neigbours, field.cells[x][y])
+        }
+      }
     }
   }
+
   return neigbours
 }
 
-func FindCell(field Field, x int, y int) Cell {
-  for i := range field.cells {
-    if field.cells[i].x == x && field.cells[i].y == y {
-      return field.cells[i]
-    }
-  }
-  // SHOULD NOT HAPPEN
-  return field.cells[0]
+func GetCell(field Field, x int, y int) Cell {
+  return field.cells[x][y]
 }
