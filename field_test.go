@@ -43,7 +43,7 @@ func TestCellNeighbours(t *testing.T) {
   }
 
   for _, tt := range testTable {
-    assert.Equal(t, len(tt.out), len(Neighbours(field, tt.in.x, tt.in.y)))
+    assert.Equal(t, len(tt.out), len(Neighbours(field, tt.in)))
   }
 }
 

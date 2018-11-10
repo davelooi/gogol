@@ -10,11 +10,13 @@ func FieldSize(field Field) int {
 }
 
 func NeighboursCount(field Field, cell Cell) int {
-  return len(Neighbours(field, cell.x, cell.y))
+  return len(Neighbours(field, cell))
 }
 
-func Neighbours(field Field, x int, y int) []Cell {
+func Neighbours(field Field, cell Cell) []Cell {
   var neigbours []Cell
+  x := cell.x
+  y := cell.y
   for _, cell := range field.cells {
     if cell.x == x+1 && cell.y == y {
       neigbours = append(neigbours, cell)
