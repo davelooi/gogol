@@ -6,17 +6,18 @@ import (
 )
 
 func main() {
-  width := 99
-  height := 99
-  var cells = []Cell{}
+  width := 60
+  height := 60
 
-  for w := 0; w < width; w++ {
-    for h := 0; h < height; h++ {
-      cells = append(cells, Cell{x: w, y: h, Alive: RandomBool()})
+  cells := make([][]Cell, 0)
+  for h := 0; h < height; h++ {
+    row := make([]Cell, 0)
+    for w := 0; w < width; w++ {
+      row = append(row, Cell{x: w, y: h, Alive: RandomBool()})
     }
+    cells = append(cells, row)
   }
-
-  field := Field{width: width, height: width, cells: cells}
+  field := Field{width: width, height: height, cells: cells}
 
   fmt.Print(Output(field))
 }
